@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora WhatsApp Business Platform | ITBX Contacto Inteligente</title>
+  <meta name="description" content="Calculadora oficial de costos de WhatsApp Business Platform (Meta) para empresas con ITBX. Nuevas tarifas por mensaje, tramo gratuito y cotizador para ventas.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="https://itbx.co/wp-content/uploads/2020/11/logosintelef_2@3xWEB.png">
+
+  <style>
+    :root {
+      --itbx-blue: #009BDC;
+      --itbx-blue-hover: #0084bd;
+      --itbx-blue-light: #e6f6fc;
+      --itbx-green: #25D366;
+      --itbx-green-dark: #128C7E;
+      --itbx-green-light: #e8f9ee;
+      --dark-navy: #0F172A;
+      --slate-800: #1E293B;
+      --slate-700: #334155;
+      --slate-600: #475569;
+      --slate-500: #64748B;
+      --slate-400: #94A3B8;
+      --slate-200: #E2E8F0;
+      --slate-100: #F1F5F9;
+      --slate-50: #F8FAFC;
+      --white: #FFFFFF;
+      --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --radius-sm: 8px;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 12px 24px -4px rgba(15, 23, 42, 0.08), 0 4px 8px -2px rgba(15, 23, 42, 0.03);
+      --shadow-card: 0 20px 35px -10px rgba(0, 155, 220, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--sans);
+      background-color: var(--slate-50);
+      color: var(--slate-800);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.5;
+      padding: clamp(1.2rem, 3.5vw, 3rem) clamp(1rem, 3vw, 2.5rem);
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(0, 155, 220, 0.05) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(37, 211, 102, 0.05) 0px, transparent 50%);
+      background-repeat: no-repeat;
+      min-height: 100vh;
+    }
+
+    .mono {
+      font-family: var(--mono);
+      font-feature-settings: "ss02" on, "ss03" on, "tnum" on;
+    }
+
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+
+    /* HEADER */
+    header {
+      margin-bottom: clamp(1.8rem, 3vw, 2.6rem);
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.6rem;
+      padding-bottom: 1.2rem;
+      border-bottom: 1px solid var(--slate-200);
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .itbx-logo {
+      height: 44px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    .meta-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: var(--white);
+      border: 1px solid var(--slate-200);
+      border-radius: 999px;
+      padding: 0.35rem 0.85rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--slate-600);
+      letter-spacing: 0.03em;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .meta-badge svg {
+      width: 16px;
+      height: 16px;
+      fill: #1877F2;
+    }
+
+    .currency-switcher {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--white);
+      border: 1px solid var(--slate-200);
+      padding: 0.25rem 0.35rem 0.25rem 0.75rem;
+      border-radius: 999px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .currency-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--slate-500);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .currency-select {
+      background: var(--slate-100);
+      border: 0;
+      border-radius: 999px;
+      padding: 0.35rem 0.75rem;
+      font-family: var(--sans);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--dark-navy);
+      cursor: pointer;
+      outline: none;
+      transition: background 0.15s;
+    }
+
+    .currency-select:hover {
+      background: var(--slate-200);
+    }
+
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--itbx-blue);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .eyebrow .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--itbx-green);
+      display: inline-block;
+      box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.2);
+    }
+
+    h1 {
+      font-size: clamp(1.8rem, 3.8vw, 2.7rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      color: var(--dark-navy);
+      margin-bottom: 0.6rem;
+    }
+
+    h1 span.highlight {
+      color: var(--itbx-blue);
+    }
+
+    .sub {
+      color: var(--slate-600);
+      font-size: clamp(0.95rem, 1.3vw, 1.1rem);
+      max-width: 68ch;
+    }
+
+    /* GRID LAYOUT */
+    .layout {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: clamp(1.2rem, 2.5vw, 2.2rem);
+      align-items: start;
+    }
+
+    /* INPUTS PANEL */
+    .panel {
+      background: var(--white);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-lg);
+      padding: clamp(1.4rem, 2.8vw, 2.4rem);
+      box-shadow: var(--shadow-card);
+    }
+
+    .step {
+      padding: 1.6rem 0;
+      border-bottom: 1px solid var(--slate-200);
+    }
+
+    .step:first-child {
+      padding-top: 0;
+    }
+
+    .step:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .step-header {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .step-badge {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--itbx-blue);
+      background: var(--itbx-blue-light);
+      padding: 0.2rem 0.55rem;
+      border-radius: 6px;
+      letter-spacing: 0.05em;
+    }
+
+    .q {
+      font-weight: 600;
+      font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+      color: var(--dark-navy);
+      letter-spacing: -0.02em;
+    }
+
+    .help {
+      color: var(--slate-500);
+      font-size: 0.88rem;
+      margin-bottom: 1.1rem;
+      line-height: 1.45;
+    }
+
+    /* SELECT INPUTS */
+    .select-wrapper {
+      position: relative;
+    }
+
+    select {
+      width: 100%;
+      font-family: var(--sans);
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--dark-navy);
+      background: var(--slate-50);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      padding: 0.9rem 1.1rem;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1.1rem center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    select:focus {
+      outline: none;
+      border-color: var(--itbx-blue);
+      box-shadow: 0 0 0 3px rgba(0, 155, 220, 0.15);
+      background-color: var(--white);
+    }
+
+    #otroWrap {
+      margin-top: 0.9rem;
+      display: none;
+    }
+
+    #otroWrap.on {
+      display: block;
+    }
+
+    /* SLIDERS */
+    .slider-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.8rem;
+    }
+
+    .bignum {
+      font-family: var(--mono);
+      font-size: 1.85rem;
+      font-weight: 600;
+      line-height: 1;
+      color: var(--dark-navy);
+      letter-spacing: -0.02em;
+    }
+
+    .bignum .unit {
+      font-size: 0.85rem;
+      color: var(--slate-500);
+      font-weight: 500;
+      margin-left: 0.4em;
+    }
+
+    .slider-calc-preview {
+      font-size: 0.85rem;
+      color: var(--slate-500);
+      font-family: var(--mono);
+      background: var(--slate-100);
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+    }
+
+    input[type=range] {
+      width: 100%;
+      -webkit-appearance: none;
+      appearance: none;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--slate-200);
+      outline: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--itbx-blue);
+      border: 3px solid var(--white);
+      box-shadow: 0 2px 6px rgba(0, 155, 220, 0.4);
+      cursor: pointer;
+      transition: transform 0.15s, background 0.15s;
+    }
+
+    input[type=range]::-webkit-slider-thumb:hover {
+      transform: scale(1.15);
+      background: var(--itbx-blue-hover);
+    }
+
+    input[type=range]::-moz-range-thumb {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--itbx-blue);
+      border: 3px solid var(--white);
+      box-shadow: 0 2px 6px rgba(0, 155, 220, 0.4);
+      cursor: pointer;
+    }
+
+    input[type=range]:focus-visible {
+      outline: 2px solid var(--itbx-blue);
+      outline-offset: 4px;
+    }
+
+    .scalerow {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--slate-400);
+      margin-top: 0.55rem;
+      letter-spacing: 0.04em;
+    }
+
+    /* SWITCH TOGGLE */
+    .switchrow {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.2rem;
+      cursor: pointer;
+    }
+
+    .switch {
+      position: relative;
+      width: 52px;
+      height: 30px;
+      background: var(--slate-200);
+      border-radius: 999px;
+      transition: background 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      flex-shrink: 0;
+    }
+
+    .switch::after {
+      content: "";
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--white);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    input[type=checkbox] {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    input[type=checkbox]:checked + .switch {
+      background: var(--itbx-blue);
+    }
+
+    input[type=checkbox]:checked + .switch::after {
+      transform: translateX(22px);
+    }
+
+    input[type=checkbox]:focus-visible + .switch {
+      outline: 2px solid var(--itbx-blue);
+      outline-offset: 3px;
+    }
+
+    /* BROADCAST SECTION */
+    .broadcast {
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      transition: max-height 0.4s ease, opacity 0.3s ease, margin 0.3s ease;
+    }
+
+    .broadcast.on {
+      max-height: 580px;
+      opacity: 1;
+      margin-top: 1.3rem;
+      padding-top: 1.2rem;
+      border-top: 1px dashed var(--slate-200);
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .field {
+      margin-top: 1rem;
+    }
+
+    .field:first-child {
+      margin-top: 0;
+    }
+
+    .field label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--slate-700);
+      margin-bottom: 0.45rem;
+    }
+
+    .numinput {
+      width: 100%;
+      font-family: var(--mono);
+      font-size: 1.05rem;
+      font-weight: 500;
+      background: var(--slate-50);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      padding: 0.8rem 1rem;
+      color: var(--dark-navy);
+      transition: all 0.2s;
+    }
+
+    .numinput:focus {
+      outline: none;
+      border-color: var(--itbx-blue);
+      box-shadow: 0 0 0 3px rgba(0, 155, 220, 0.15);
+      background-color: var(--white);
+    }
+
+    .seg {
+      display: flex;
+      gap: 0.4rem;
+      background: var(--slate-100);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      padding: 4px;
+    }
+
+    .seg button {
+      flex: 1;
+      font-family: var(--sans);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--slate-500);
+      background: transparent;
+      border: 0;
+      border-radius: 10px;
+      padding: 0.7rem 0.5rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.2rem;
+    }
+
+    .seg button span.desc {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--slate-400);
+    }
+
+    .seg button.on {
+      background: var(--white);
+      color: var(--dark-navy);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+    }
+
+    .seg button.on span.desc {
+      color: var(--itbx-blue);
+      font-weight: 500;
+    }
+
+    /* RESULT CARD */
+    .result-wrapper {
+      position: sticky;
+      top: 24px;
+    }
+
+    .result {
+      background: var(--dark-navy);
+      color: #F8FAFC;
+      border-radius: var(--radius-lg);
+      padding: clamp(1.5rem, 2.8vw, 2.2rem);
+      box-shadow: var(--shadow-lg);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .result::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--itbx-blue) 0%, var(--itbx-green) 100%);
+    }
+
+    .result .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.8rem;
+    }
+
+    .result .eyebrow {
+      color: #93C5FD;
+      margin-bottom: 0;
+    }
+
+    .itbx-tag-badge {
+      background: rgba(0, 155, 220, 0.2);
+      color: #38BDF8;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 999px;
+      padding: 0.2rem 0.6rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .rtoggle {
+      display: none;
+    }
+
+    .total-container {
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .total {
+      font-family: var(--mono);
+      font-weight: 700;
+      font-size: clamp(2.4rem, 4.8vw, 3.4rem);
+      line-height: 1.05;
+      color: var(--white);
+      letter-spacing: -0.03em;
+    }
+
+    .total .curr-symbol {
+      color: var(--itbx-blue);
+      font-size: 0.75em;
+      margin-right: 0.1em;
+    }
+
+    .total .per {
+      font-size: 0.95rem;
+      color: var(--slate-400);
+      font-weight: 400;
+      letter-spacing: 0.02em;
+    }
+
+    .total-usd-secondary {
+      font-family: var(--mono);
+      font-size: 0.95rem;
+      color: var(--slate-400);
+      margin-top: 0.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .verdict {
+      margin-top: 1rem;
+      font-size: 0.96rem;
+      line-height: 1.5;
+      color: #CBD5E1;
+      padding: 0.75rem 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: var(--radius-md);
+      border-left: 3px solid var(--itbx-green);
+    }
+
+    /* FREE TIER PROGRESS */
+    .tier-box {
+      margin-top: 1.3rem;
+      padding-top: 1.1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .tier-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      color: var(--slate-300);
+      margin-bottom: 0.5rem;
+    }
+
+    .tier-header b {
+      color: #4ADE80;
+    }
+
+    .tier-progress {
+      width: 100%;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 999px;
+      overflow: hidden;
+      display: flex;
+    }
+
+    .tier-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #22C55E, #10B981);
+      border-radius: 999px;
+      transition: width 0.3s ease;
+    }
+
+    /* BREAKDOWN */
+    .rbreak {
+      margin-top: 1.2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 1.1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .rline {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .rline .lbl {
+      font-size: 0.86rem;
+      color: var(--slate-400);
+    }
+
+    .rline .lbl b {
+      color: #F1F5F9;
+      font-weight: 600;
+      display: block;
+      font-size: 0.94rem;
+      margin-bottom: 0.1rem;
+    }
+
+    .rline .amt {
+      font-family: var(--mono);
+      font-size: 1.02rem;
+      font-weight: 600;
+      white-space: nowrap;
+      color: var(--white);
+    }
+
+    .rline.free .amt {
+      color: #4ADE80;
+    }
+
+    .rnote {
+      margin-top: 1.2rem;
+      padding: 0.65rem 0.85rem;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: var(--radius-sm);
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+      line-height: 1.6;
+      color: #94A3B8;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* SALES ACTION BUTTONS */
+    .actions-box {
+      margin-top: 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .btn-action {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border-radius: var(--radius-md);
+      font-family: var(--sans);
+      font-size: 0.92rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 0;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn-copy {
+      background: var(--itbx-blue);
+      color: var(--white);
+    }
+
+    .btn-copy:hover {
+      background: var(--itbx-blue-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 155, 220, 0.35);
+    }
+
+    .btn-copy:active {
+      transform: translateY(0);
+    }
+
+    .btn-itbx {
+      background: rgba(255, 255, 255, 0.08);
+      color: #E2E8F0;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .btn-itbx:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: var(--white);
+    }
+
+    .toast {
+      display: none;
+      background: #10B981;
+      color: var(--white);
+      text-align: center;
+      padding: 0.6rem 1rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* FOOTER & VALUE PROP */
+    .itbx-footer {
+      margin-top: clamp(2rem, 4vw, 3.2rem);
+      background: var(--white);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-lg);
+      padding: 1.8rem 2.2rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: 1.8fr 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .footer-text h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--dark-navy);
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .footer-text p {
+      font-size: 0.88rem;
+      color: var(--slate-600);
+      line-height: 1.55;
+    }
+
+    .footer-text b {
+      color: var(--dark-navy);
+    }
+
+    .footer-cta {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .btn-cta-itbx {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: linear-gradient(135deg, var(--itbx-blue) 0%, #0077aa 100%);
+      color: var(--white);
+      padding: 0.85rem 1.4rem;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      font-size: 0.92rem;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(0, 155, 220, 0.3);
+      transition: all 0.2s ease;
+    }
+
+    .btn-cta-itbx:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 155, 220, 0.4);
+    }
+
+    /* MOBILE DOCK */
+    @media (max-width: 860px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+      body {
+        padding-bottom: 140px;
+      }
+      .result-wrapper {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: auto;
+        z-index: 99;
+      }
+      .result {
+        border-radius: 22px 22px 0 0;
+        padding: 1.2rem 1.4rem 1.4rem;
+        box-shadow: 0 -10px 30px rgba(15, 23, 42, 0.35);
+        border: 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+      }
+      .total {
+        font-size: 2.1rem;
+      }
+      .rtoggle {
+        display: flex;
+        align-items: center;
+        gap: 0.45rem;
+        position: absolute;
+        top: 1.15rem;
+        right: 1.4rem;
+        background: rgba(255, 255, 255, 0.12);
+        border: 0;
+        color: #F8FAFC;
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 0.45rem 0.8rem;
+        border-radius: 999px;
+        cursor: pointer;
+      }
+      .rtoggle svg {
+        transition: transform 0.3s;
+      }
+      .result.open .rtoggle svg {
+        transform: rotate(180deg);
+      }
+      .rbody {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.35s ease, opacity 0.3s ease;
+      }
+      .result.open .rbody {
+        max-height: 70vh;
+        overflow-y: auto;
+        opacity: 1;
+        margin-top: 1rem;
+      }
+      .field-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+      }
+      .footer-cta {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (min-width: 861px) {
+      .rbody {
+        max-height: none !important;
+        opacity: 1 !important;
+      }
+    }
+
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+      }
+      .result-wrapper {
+        position: static;
+      }
+      .btn-action, .currency-switcher, .rtoggle {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- HEADER CON LOGO ITBX -->
+  <header>
+    <div class="top-bar">
+      <div class="logo-container">
+        <a href="https://itbx.co" target="_blank" rel="noopener" title="ITBX Contacto Inteligente">
+          <img src="https://itbx.co/wp-content/uploads/2020/11/logosintelef_2@3xWEB.png" alt="ITBX Logo" class="itbx-logo">
+        </a>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap;">
+        <div class="meta-badge">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95C18.05 21.45 22 17.19 22 12c0-5.52-4.48-10-10-10z"/></svg>
+          Meta WhatsApp Cloud API
+        </div>
+
+        <div class="currency-switcher">
+          <span class="currency-label">Moneda</span>
+          <select id="currencySelect" class="currency-select" aria-label="Seleccionar Moneda">
+            <option value="COP" selected>COP ($ Pesos)</option>
+            <option value="USD">USD ($ Dólar)</option>
+            <option value="MXN">MXN ($ Mexicano)</option>
+            <option value="EUR">EUR (€ Euro)</option>
+            <option value="ARS">ARS ($ Argentino)</option>
+            <option value="CLP">CLP ($ Chileno)</option>
+            <option value="PEN">PEN (S/ Sol)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="eyebrow"><span class="dot"></span> Herramienta Oficial de Cotización · Precios por Mensaje</div>
+    <h1>¿Cuánto le costará <span class="highlight">WhatsApp</span> a tu empresa?</h1>
+    <p class="sub">Calcula el costo oficial exacto de Meta por tus mensajes de atención y campañas masivas con tu WhatsApp integrado a <b>ITBX</b>. Sin sorpresas ni cobros ocultos.</p>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <div class="layout">
+    
+    <!-- PANEL DE CONFIGURACIÓN -->
+    <div class="panel">
+      
+      <!-- PASO 1: PAÍS -->
+      <div class="step">
+        <div class="step-header">
+          <span class="step-badge">PASO 01</span>
+          <span class="q">¿En qué país están ubicados tus clientes?</span>
+        </div>
+        <div class="help">El costo de Meta lo determina el código de país del usuario que recibe el mensaje, no el tuyo.</div>
+        
+        <div class="select-wrapper">
+          <select id="pais" aria-label="País de destino">
+            <optgroup label="América Latina">
+              <option value="Colombia" selected>🇨🇴 Colombia (Tarifa más económica de LATAM)</option>
+              <option value="México">🇲🇽 México</option>
+              <option value="Chile">🇨🇱 Chile</option>
+              <option value="Perú">🇵🇪 Perú</option>
+              <option value="Argentina">🇦🇷 Argentina</option>
+              <option value="Brasil">🇧🇷 Brasil</option>
+              <option value="Ecuador">🇪🇨 Ecuador</option>
+              <option value="Panamá">🇵🇦 Panamá</option>
+              <option value="Costa Rica">🇨🇷 Costa Rica</option>
+              <option value="República Dominicana">🇩🇴 República Dominicana</option>
+              <option value="Guatemala">🇬🇹 Guatemala</option>
+              <option value="El Salvador">🇸🇻 El Salvador</option>
+              <option value="Honduras">🇭🇳 Honduras</option>
+              <option value="Bolivia">🇧🇴 Bolivia</option>
+              <option value="Paraguay">🇵🇾 Paraguay</option>
+              <option value="Uruguay">🇺🇾 Uruguay</option>
+              <option value="Puerto Rico">🇵🇷 Puerto Rico</option>
+              <option value="Venezuela">🇻🇪 Venezuela</option>
+            </optgroup>
+            <optgroup label="Norteamérica & Europa">
+              <option value="Estados Unidos">🇺🇸 Estados Unidos</option>
+              <option value="España">🇪🇸 España</option>
+              <option value="Canadá">🇨🇦 Canadá</option>
+            </optgroup>
+            <optgroup label="Otros Destinos">
+              <option value="Otro">🌍 Otro país del mundo...</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <div id="otroWrap">
+          <div class="help" style="margin-top:0.6rem; margin-bottom:0.4rem;">Selecciona tu país específico:</div>
+          <select id="paisOtro" aria-label="Otro país">
+            <optgroup label="Europa">
+              <option value="Portugal">Portugal</option>
+              <option value="Francia">Francia</option>
+              <option value="Alemania">Alemania</option>
+              <option value="Italia">Italia</option>
+              <option value="Países Bajos">Países Bajos</option>
+              <option value="Reino Unido">Reino Unido</option>
+              <option value="Polonia">Polonia</option>
+              <option value="Resto de Europa Occidental">Resto de Europa Occidental</option>
+              <option value="Resto de Europa Central y del Este">Resto de Europa Central y del Este</option>
+            </optgroup>
+            <optgroup label="Asia-Pacífico & Medio Oriente">
+              <option value="India">India</option>
+              <option value="Indonesia">Indonesia</option>
+              <option value="Emiratos Árabes Unidos">Emiratos Árabes Unidos</option>
+              <option value="Arabia Saudí">Arabia Saudí</option>
+              <option value="Resto de Asia-Pacífico">Resto de Asia-Pacífico</option>
+              <option value="Resto de Oriente Medio">Resto de Oriente Medio</option>
+            </optgroup>
+            <optgroup label="Otros">
+              <option value="Otro país">Cualquier otro país</option>
+            </optgroup>
+          </select>
+        </div>
+      </div>
+
+      <!-- PASO 2: CONVERSACIONES AL DÍA -->
+      <div class="step">
+        <div class="step-header">
+          <span class="step-badge">PASO 02</span>
+          <span class="q">¿Cuántas conversaciones nuevas atiendes al día?</span>
+        </div>
+        <div class="help">Clientes o usuarios distintos que te escriben a tu línea de WhatsApp diariamente.</div>
+        
+        <div class="slider-row">
+          <span class="slider-calc-preview" id="convMesBadge">~600 clientes/mes</span>
+          <span class="bignum"><span id="convVal">20</span><span class="unit">chats / día</span></span>
+        </div>
+        <input type="range" id="conv" min="0" max="500" step="5" value="20">
+        <div class="scalerow"><span>0</span><span>125</span><span>250</span><span>375</span><span>500+</span></div>
+      </div>
+
+      <!-- PASO 3: RESPUESTAS POR CHAT -->
+      <div class="step">
+        <div class="step-header">
+          <span class="step-badge">PASO 03</span>
+          <span class="q">¿Cuántas respuestas das en cada conversación?</span>
+        </div>
+        <div class="help">En el nuevo modelo de Meta, cada burbuja enviada es un mensaje de servicio. Con ITBX puedes estructurar respuestas completas para reducir costos.</div>
+        
+        <div class="slider-row">
+          <span class="slider-calc-preview" id="totalMsgServBadge">4,800 msgs/mes</span>
+          <span class="bignum"><span id="repVal">8</span><span class="unit">respuestas</span></span>
+        </div>
+        <input type="range" id="rep" min="1" max="30" step="1" value="8">
+        <div class="scalerow"><span>1 burbuja</span><span>10</span><span>20</span><span>30 burbujas</span></div>
+      </div>
+
+      <!-- PASO 4: DIFUSIONES Y CAMPAÑAS -->
+      <div class="step">
+        <label class="switchrow" for="camp">
+          <div>
+            <div class="step-header" style="margin-bottom:0.2rem">
+              <span class="step-badge">PASO 04</span>
+              <span class="q">¿Realizas envíos masivos o difusiones?</span>
+            </div>
+            <div class="help" style="margin-bottom:0">Envío de promociones, boletines o avisos masivos a bases de datos de clientes.</div>
+          </div>
+          <input type="checkbox" id="camp">
+          <span class="switch" aria-hidden="true"></span>
+        </label>
+
+        <div class="broadcast" id="broadcast">
+          <div class="field-grid">
+            <div class="field">
+              <label for="contactos">Contactos por campaña</label>
+              <input class="numinput" type="number" id="contactos" min="0" step="100" value="1000" inputmode="numeric">
+            </div>
+            <div class="field">
+              <label for="campmes">Campañas enviadas al mes</label>
+              <input class="numinput" type="number" id="campmes" min="0" step="1" value="2" inputmode="numeric">
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Tipo de plantilla de campaña</label>
+            <div class="seg" id="seg">
+              <button type="button" data-t="mkt" class="on" id="btnMkt">
+                Promocional (Marketing)
+                <span class="desc">Ventas, ofertas, reactivación</span>
+              </button>
+              <button type="button" data-t="util" id="btnUtil">
+                Informativa (Utilidad)
+                <span class="desc">Avisos de pago, citas, alertas</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- PANEL DE RESULTADOS (STICKY / FLOTANTE) -->
+    <div class="result-wrapper">
+      <div class="result" id="result">
+        
+        <button class="rtoggle" id="rtoggle" aria-label="Ver desglose detallado">
+          <span>Detalle</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+
+        <div class="card-header">
+          <div class="eyebrow"><span class="dot"></span> Inversión Oficial Meta</div>
+          <span class="itbx-tag-badge">WhatsApp + ITBX</span>
+        </div>
+
+        <div class="total-container">
+          <div class="total">
+            <span class="curr-symbol" id="currSymbol">$</span><span id="totalFormatted">0</span>
+            <span class="per">/ mes</span>
+          </div>
+          <div class="total-usd-secondary" id="totalUsdWrapper">
+            <span>Eq. a</span> <b id="totalUsd">$0.00 USD</b>
+          </div>
+        </div>
+
+        <!-- CUERPO EXPANDIBLE -->
+        <div class="rbody" id="rbody">
+          <div class="verdict" id="verdict">Calculando...</div>
+
+          <!-- TRAMO GRATIS -->
+          <div class="tier-box">
+            <div class="tier-header">
+              <span>Bono mensual de Meta: <b>1,000 gratis</b></span>
+              <span id="tierPercent">100% usado</span>
+            </div>
+            <div class="tier-progress">
+              <div class="tier-bar" id="tierBar" style="width: 100%;"></div>
+            </div>
+          </div>
+
+          <!-- DESGLOSE -->
+          <div class="rbreak" id="rbreak"></div>
+
+          <!-- TARIFA DEL PAÍS -->
+          <div class="rnote" id="rnote"></div>
+
+          <!-- ACCIONES -->
+          <div class="actions-box">
+            <button class="btn-action btn-copy" id="btnCopy" type="button">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              Copiar Estimación de Costos
+            </button>
+            <div class="toast" id="copyToast">¡Estimación copiada al portapapeles!</div>
+
+            <a href="https://itbx.co" target="_blank" rel="noopener" class="btn-action btn-itbx">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              Conectar WhatsApp en ITBX.co
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SECCIÓN INFORMATIVA DE VALOR AGREGADO ITBX -->
+  <footer class="itbx-footer">
+    <div class="footer-content">
+      <div class="footer-text">
+        <h3>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#009BDC" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          Beneficio Exclusivo con la Plataforma ITBX
+        </h3>
+        <p>
+          Meta incluye <b>1,000 mensajes de servicio gratuitos al mes</b> por cada número conectado a la API oficial. Con la plataforma de <b>ITBX</b> gestionas múltiples agentes en simultáneo, chatbots inteligentes con IA, voz, CRM y telefonía en la nube <b>sin sobrecostos ocultos por conversación</b>.
+        </p>
+      </div>
+      <div class="footer-cta">
+        <a href="https://itbx.co" target="_blank" rel="noopener" class="btn-cta-itbx">
+          Hablar con un Asesor ITBX
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  // Tarifario Oficial de Meta por mensaje (USD)
+  var R_LATAM  = { svc: 0.0113, mkt: 0.0740 };
+  var R_NA     = { svc: 0.0034, mkt: 0.0250 };
+  var R_WE     = { svc: 0.0180, mkt: 0.0622 };
+  var R_CEE    = { svc: 0.0223, mkt: 0.0903 };
+  var R_APAC   = { svc: 0.0119, mkt: 0.0769 };
+  var R_ME     = { svc: 0.0096, mkt: 0.0358 };
+  var R_AFRICA = { svc: 0.0040, mkt: 0.0225 };
+  var R_OTHER  = { svc: 0.0081, mkt: 0.0634 };
+
+  var RATES = {
+    // Latinoamérica
+    "Colombia": { svc: 0.0008, mkt: 0.0125 }, // ¡Tarifa líder en ahorro!
+    "México": { svc: 0.0085, mkt: 0.0305 },
+    "Chile": { svc: 0.0200, mkt: 0.0889 },
+    "Perú": { svc: 0.0200, mkt: 0.0703 },
+    "Argentina": { svc: 0.0260, mkt: 0.0618 },
+    "Brasil": { svc: 0.0068, mkt: 0.0625 },
+    "Ecuador": R_LATAM,
+    "Panamá": R_LATAM,
+    "Costa Rica": R_LATAM,
+    "República Dominicana": R_LATAM,
+    "Guatemala": R_LATAM,
+    "El Salvador": R_LATAM,
+    "Honduras": R_LATAM,
+    "Bolivia": R_LATAM,
+    "Paraguay": R_LATAM,
+    "Uruguay": R_LATAM,
+    "Puerto Rico": R_LATAM,
+    "Venezuela": R_LATAM,
+
+    // Norteamérica
+    "Estados Unidos": R_NA,
+    "Canadá": R_NA,
+
+    // Europa
+    "España": { svc: 0.0200, mkt: 0.0707 },
+    "Francia": { svc: 0.0300, mkt: 0.0859 },
+    "Alemania": { svc: 0.0550, mkt: 0.1365 },
+    "Italia": { svc: 0.0300, mkt: 0.0795 },
+    "Países Bajos": { svc: 0.0500, mkt: 0.1597 },
+    "Reino Unido": { svc: 0.0220, mkt: 0.0635 },
+    "Portugal": R_WE,
+    "Polonia": R_CEE,
+    "Resto de Europa Occidental": R_WE,
+    "Resto de Europa Central y del Este": R_CEE,
+
+    // Asia y Medio Oriente
+    "India": { svc: 0.0014, mkt: 0.0118 },
+    "Indonesia": { svc: 0.0250, mkt: 0.0411 },
+    "Arabia Saudí": { svc: 0.0107, mkt: 0.0501 },
+    "Emiratos Árabes Unidos": { svc: 0.0157, mkt: 0.0499 },
+    "Resto de Asia-Pacífico": R_APAC,
+    "Resto de Oriente Medio": R_ME,
+
+    // Otros
+    "Otro país": R_OTHER
+  };
+
+  // Monedas y tasas de cambio aproximadas respecto a 1 USD
+  var CURRENCIES = {
+    "COP": { symbol: "$", rate: 4200, decimals: 0, label: "COP" },
+    "USD": { symbol: "$", rate: 1.0, decimals: 2, label: "USD" },
+    "MXN": { symbol: "$", rate: 19.5, decimals: 2, label: "MXN" },
+    "EUR": { symbol: "€", rate: 0.92, decimals: 2, label: "EUR" },
+    "ARS": { symbol: "$", rate: 1250, decimals: 0, label: "ARS" },
+    "CLP": { symbol: "$", rate: 940, decimals: 0, label: "CLP" },
+    "PEN": { symbol: "S/ ", rate: 3.75, decimals: 2, label: "PEN" }
+  };
+
+  var FREE_SVC = 1000;
+  var tipoCampana = "mkt";
+  var currentCalculation = {};
+
+  var $ = function(id) { return document.getElementById(id); };
+
+  function formatMoney(amountInUSD, currCode) {
+    var c = CURRENCIES[currCode] || CURRENCIES["USD"];
+    var converted = amountInUSD * c.rate;
+    
+    if (converted === 0) return "0";
+    if (converted < 1 && c.decimals > 0) return converted.toFixed(3);
+
+    return converted.toLocaleString("es-CO", {
+      minimumFractionDigits: c.decimals,
+      maximumFractionDigits: c.decimals
+    });
+  }
+
+  function intf(n) {
+    return Math.round(n).toLocaleString("es-CO");
+  }
+
+  function getSelectedCountry() {
+    var p = $("pais").value;
+    return (p === "Otro") ? $("paisOtro").value : p;
+  }
+
+  function calculate() {
+    var isOtro = $("pais").value === "Otro";
+    $("otroWrap").classList.toggle("on", isOtro);
+
+    var pais = getSelectedCountry();
+    var r = RATES[pais] || R_OTHER;
+    var currCode = $("currencySelect").value;
+    var curr = CURRENCIES[currCode];
+
+    var conv = +$("conv").value;
+    var rep = +$("rep").value;
+    $("convVal").textContent = conv;
+    $("repVal").textContent = rep;
+
+    var monthlyClients = conv * 30;
+    $("convMesBadge").textContent = "~" + intf(monthlyClients) + " clientes/mes";
+
+    // 1. Mensajes de Servicio
+    var svcMsgs = monthlyClients * rep;
+    $("totalMsgServBadge").textContent = intf(svcMsgs) + " msgs/mes";
+
+    var freeUsed = Math.min(svcMsgs, FREE_SVC);
+    var billed = Math.max(0, svcMsgs - FREE_SVC);
+    var svcCostUSD = billed * r.svc;
+
+    // Barra de progreso del tramo gratis
+    var freePercent = Math.min(100, Math.round((freeUsed / FREE_SVC) * 100));
+    $("tierPercent").textContent = freePercent + "% utilizado (" + intf(freeUsed) + " / 1,000)";
+    $("tierBar").style.width = freePercent + "%";
+    if (freePercent === 100) {
+      $("tierBar").style.background = "linear-gradient(90deg, #3B82F6, #1D4ED8)";
+    } else {
+      $("tierBar").style.background = "linear-gradient(90deg, #22C55E, #10B981)";
+    }
+
+    // 2. Campañas Masivas
+    var campOn = $("camp").checked;
+    $("broadcast").classList.toggle("on", campOn);
+    var bMsgs = 0, bCostUSD = 0;
+    if (campOn) {
+      var contactos = Math.max(0, +$("contactos").value || 0);
+      var campmes = Math.max(0, +$("campmes").value || 0);
+      bMsgs = contactos * campmes;
+      var bRate = (tipoCampana === "util") ? r.svc : r.mkt;
+      bCostUSD = bMsgs * bRate;
+    }
+
+    // Total General
+    var totalUSD = svcCostUSD + bCostUSD;
+    $("currSymbol").textContent = curr.symbol;
+    $("totalFormatted").textContent = formatMoney(totalUSD, currCode);
+
+    // Indicador secundario en USD si está en otra moneda
+    if (currCode !== "USD") {
+      $("totalUsdWrapper").style.display = "flex";
+      $("totalUsd").textContent = "$" + totalUSD.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " USD";
+    } else {
+      $("totalUsdWrapper").style.display = "none";
+    }
+
+    // Veredicto Contextual
+    var v = "";
+    if (totalUSD === 0) {
+      v = "✨ ¡Operación 100% gratuita! Todas tus conversaciones están cubiertas dentro de los 1,000 mensajes de bono de Meta.";
+    } else if (totalUSD < 15) {
+      v = "🟢 Costo sumamente bajo. Tu inversión en Meta es mínima gracias al tramo gratuito de servicio.";
+    } else if (totalUSD < 60) {
+      v = "🔵 Presupuesto controlado y eficiente. Excelente retorno para tu equipo de atención y ventas con ITBX.";
+    } else {
+      v = "🚀 Operación de alto volumen. Te recomendamos estructurar respuestas consolidadas en ITBX para maximizar tu ahorro.";
+    }
+    $("verdict").textContent = v;
+
+    // Desglose detallado
+    var html = '<div class="rline">' +
+      '<span class="lbl"><b>Mensajes de Atención (Servicio)</b>' +
+      intf(billed) + ' facturables &middot; ' + intf(freeUsed) + ' gratis</span>' +
+      '<span class="amt">' + curr.symbol + formatMoney(svcCostUSD, currCode) + '</span>' +
+      '</div>';
+
+    if (freeUsed >= FREE_SVC && billed === 0) {
+      html += '<div class="rline free">' +
+        '<span class="lbl">Bono 1,000 mensajes de servicio</span>' +
+        '<span class="amt">100% Bonificado</span>' +
+        '</div>';
+    }
+
+    if (campOn) {
+      var tlabel = (tipoCampana === "util") ? "Plantilla Informativa" : "Plantilla Promocional";
+      html += '<div class="rline">' +
+        '<span class="lbl"><b>Campañas de Difusión</b>' +
+        intf(bMsgs) + ' mensajes &middot; ' + tlabel + '</span>' +
+        '<span class="amt">' + curr.symbol + formatMoney(bCostUSD, currCode) + '</span>' +
+        '</div>';
+    }
+    $("rbreak").innerHTML = html;
+
+    // Nota de tarifas oficiales
+    $("rnote").textContent = "TARIFA META " + pais.toUpperCase() + " · SERVICIO: $" + r.svc.toFixed(4) + " USD/MSG · MARKETING: $" + r.mkt.toFixed(4) + " USD/MSG";
+
+    // Guardar estado actual para copia rápida
+    currentCalculation = {
+      pais: pais,
+      currCode: currCode,
+      totalFormatted: curr.symbol + formatMoney(totalUSD, currCode),
+      totalUSD: totalUSD.toFixed(2),
+      convDia: conv,
+      convMes: monthlyClients,
+      repPorChat: rep,
+      totalSvcMsgs: svcMsgs,
+      freeUsed: freeUsed,
+      billed: billed,
+      svcCostFormatted: curr.symbol + formatMoney(svcCostUSD, currCode),
+      campOn: campOn,
+      bMsgs: bMsgs,
+      bTipo: tipoCampana === "util" ? "Informativa (Utilidad)" : "Promocional (Marketing)",
+      bCostFormatted: curr.symbol + formatMoney(bCostUSD, currCode),
+      tSvc: r.svc,
+      tMkt: r.mkt
+    };
+  }
+
+  // Segmented Buttons (Marketing vs Utilidad)
+  var seg = $("seg");
+  seg.addEventListener("click", function(e) {
+    var b = e.target.closest("button");
+    if (!b) return;
+    tipoCampana = b.getAttribute("data-t");
+    $("btnMkt").classList.toggle("on", tipoCampana === "mkt");
+    $("btnUtil").classList.toggle("on", tipoCampana === "util");
+    calculate();
+  });
+
+  // Mobile Bottom-Sheet Accordion
+  $("rtoggle").addEventListener("click", function() {
+    $("result").classList.toggle("open");
+  });
+
+  // Listeners
+  ["pais", "paisOtro", "conv", "rep", "camp", "contactos", "campmes", "currencySelect"].forEach(function(id) {
+    $(id).addEventListener("input", calculate);
+    $(id).addEventListener("change", calculate);
+  });
+
+  // Copiar estimación de costos
+  $("btnCopy").addEventListener("click", function() {
+    var c = currentCalculation;
+    var texto = 
+      "📊 *ESTIMACIÓN DE COSTOS META (WHATSAPP BUSINESS)*\n" +
+      "🏢 *Plataforma Omnicanal ITBX* (itbx.co)\n" +
+      "-------------------------------------------\n" +
+      "📍 *País de destino:* " + c.pais + "\n" +
+      "💬 *Atención al cliente:* " + intf(c.convDia) + " chats/día (~" + intf(c.convMes) + " al mes)\n" +
+      "📨 *Mensajes promedio por chat:* " + c.repPorChat + " respuestas\n" +
+      "🎁 *Bono mensual de Meta:* 1,000 mensajes gratis incluidos\n" +
+      "💵 *Costo servicio facturable:* " + c.svcCostFormatted + " (" + intf(c.billed) + " msgs)\n";
+
+    if (c.campOn) {
+      texto += "📢 *Campañas masivas:* " + intf(c.bMsgs) + " mensajes/mes (" + c.bTipo + ")\n" +
+               "💵 *Costo campañas:* " + c.bCostFormatted + "\n";
+    }
+
+    texto += 
+      "-------------------------------------------\n" +
+      "🏷️ *INVERSIÓN TOTAL ESTIMADA META:* " + c.totalFormatted + " / mes";
+
+    if (c.currCode !== "USD") {
+      texto += " (aprox. $" + c.totalUSD + " USD)";
+    }
+
+    texto += "\n\n💡 *Con ITBX:* Gestionas tu WhatsApp oficial con múltiples agentes en simultáneo, chatbots IA, PBX virtual y CRM sin costos ocultos por conversación.\n" +
+             "🔗 Conoce más en: https://itbx.co";
+
+    navigator.clipboard.writeText(texto).then(function() {
+      var toast = $("copyToast");
+      toast.style.display = "block";
+      setTimeout(function() {
+        toast.style.display = "none";
+      }, 3000);
+    }).catch(function(err) {
+      alert("Resumen generado:\n\n" + texto);
+    });
+  });
+
+  // Inicializar
+  calculate();
+</script>
+
+</body>
+</html>
